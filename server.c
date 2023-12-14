@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:11:03 by tiacovel          #+#    #+#             */
-/*   Updated: 2023/12/13 16:48:39 by tiacovel         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:48:44 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,26 @@
 #include <signal.h>
 #include <sys/types.h>
 
-volatile sig_atomic_t signal_received = 0;
-
-void signal_handler(int signal)
+void	signal_handler(int signal)
 {
+	char	buffer[8];
+	int		i;
+
+	i = 0;
 	if (signal == SIGUSR1)
 	{
-		printf("Signal 1 recived/n");
-		signal_received = 1;
+		buffer[i] = '0';
 	}
 	else if (signal == SIGUSR2)
 	{
-		printf("Signal 2 recived/n");
-		signal_received = 1;
+		buffer[i] = '1';
 	}
+	if (i == 7)
+	{
+		i = 0;
+		printf("%s", buffer);
+	}
+	i++;
 }
 
 int main(void)
@@ -39,11 +45,11 @@ int main(void)
 
 	pid = getpid();
 	printf("Server PID: %d\n", pid);
-	signal(SIGUSR1, signal_handler);
-	//signal(SIGUSR2, signal_handler);
 	printf("Server: Waiting for signals...\n");
 	while (1) 
 	{
+		signal(SIGUSR1, signal_handler);
+		signal(SIGUSR2, signal_handler);
 		pause();
 	}
 	return (0);
