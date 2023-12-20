@@ -6,17 +6,11 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:55:41 by tiacovel          #+#    #+#             */
-/*   Updated: 2023/12/14 17:09:32 by tiacovel         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:38:34 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include <unistd.h>
-#include <signal.h>
-#include <sys/types.h>
-
-static pid_t server_pid;
+#include "../include/minitalk.h"
 
 static int	is_space(char c)
 {
@@ -56,67 +50,38 @@ int	ft_atoi(const char *str)
 	return (result *= sign);
 }
 
-/* 
-	********** Project functions ***********
-*/
-
-char binaryToChar(const char *binary) {
-    int decimal = 0;
-    int base = 1;
-
-    // Iterate over the binary string from right to left
-    for (int i = 7; i >= 0; --i) {
-        if (binary[i] == '1') {
-            decimal += base;
-        }
-        base *= 2;
-    }
-
-    // Convert decimal integer to character
-    char character = (char)decimal;
-
-    return character;
-}
-
-void	printBinary(char ch)
+void	send_string(int server_pid, char ch)
 {
 	int	i;
 
-	i = 7;
-	while (i >= 0)
+	i = 0;
+	while (i < 8)
 	{
-		if ((ch & (1 << i)) != 0) {
-			printf("1");
+		if ((ch & (1 << i)) != 0)
 			kill(server_pid, SIGUSR1);
-		} else {
-			printf("0");
+		else
 			kill(server_pid, SIGUSR2);
-		}
-		i--;
-		usleep(10000);
+		i++;
+		usleep(500);
 	}
 }
 
 int main(int argc, char **argv)
 {
-	// pid_t server_pid;
-	int result;
+	int	server_pid;
+	int	i;
 
-	if (argc <= 1 && argc >3)
+	if (argc != 3)
 	{
-		printf("ERROR: please check the input arguments!");
-		return (0);
+		ft_printf("ERROR: please check the input arguments!");
+		return (1);
 	}
-
 	server_pid = ft_atoi(argv[1]);
-	printf("Client: Sending signal to server ID %d.\n", server_pid);
-	result = kill(server_pid, SIGUSR1);
-	if (result == 0) {
-		printf("Client: Signal sent successfully.\n");
-	} else {
-		perror("Client: Error sending signal");
+	i = 0;
+	while (argv[2][i] != '\0')
+	{
+		send_string(server_pid, argv[2][i]);
+		i++;
 	}
-	printBinary('a');
-	printf("\n%c", binaryToChar("01100001"));
 	return (0);
 }
