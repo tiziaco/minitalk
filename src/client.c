@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:55:41 by tiacovel          #+#    #+#             */
-/*   Updated: 2023/12/20 15:38:34 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:14:02 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	send_string(int server_pid, char ch)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	server_pid;
 	int	i;
