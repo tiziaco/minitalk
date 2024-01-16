@@ -6,7 +6,7 @@
 #    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 18:33:34 by tiacovel          #+#    #+#              #
-#    Updated: 2023/12/20 13:26:13 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/01/16 13:15:26 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_CLIENT = client
 NAME_SERVER = server
 PRINTF_LIB	= src/printf/libftprintf.a
 
-SRC_CLIENT = src/client.c
+SRC_CLIENT = src/client.c src/utils.c
 SRC_SERVER = src/server.c
 
 OBJ_CLIENT	= $(SRC_CLIENT:.c=.o)
