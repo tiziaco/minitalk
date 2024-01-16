@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:11:03 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/01/16 13:08:30 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:34:14 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	signal_handler(int sig)
 	if (bit == 8)
 	{
 		if (i == 0)
-            ft_printf("%c", '\n');
-        else
-            ft_printf("%c", i);
+			ft_printf("%c", '\n');
+		else
+			ft_printf("%c", i);
 		bit = 0;
 		i = 0;
 	}

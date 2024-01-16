@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:55:41 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/01/16 13:14:58 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:25:19 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	check_pid(char *pid)
 {
 	while (*pid)
+	{
 		if (is_num(*pid))
 			pid++;
 		else
@@ -22,6 +23,7 @@ void	check_pid(char *pid)
 			ft_printf("Check PID!");
 			exit (1);
 		}
+	}
 }
 
 void	send_string(int server_pid, char ch)
